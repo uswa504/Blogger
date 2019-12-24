@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Blogger" Class="BloggerDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Blogger.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BloggerConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Article" Member="Articles">
+    <Type Name="Article">
+      <Column Name="article_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="article_title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="article_body" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="article_publishDate" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Article_Favourite" Member="Favourites" ThisKey="article_id" OtherKey="article_id" Type="Favourite" />
+      <Association Name="User_Article" Member="User" ThisKey="user_id" OtherKey="user_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[User]" Member="Users">
+    <Type Name="User">
+      <Column Name="user_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_firstName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="user_lastName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="user_email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="user_password" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="User_Article" Member="Articles" ThisKey="user_id" OtherKey="user_id" Type="Article" />
+      <Association Name="User_Favourite" Member="Favourites" ThisKey="user_id" OtherKey="user_id" Type="Favourite" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Favourites" Member="Favourites">
+    <Type Name="Favourite">
+      <Column Name="fav_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="user_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="article_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Article_Favourite" Member="Article" ThisKey="article_id" OtherKey="article_id" Type="Article" IsForeignKey="true" />
+      <Association Name="User_Favourite" Member="User" ThisKey="user_id" OtherKey="user_id" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
