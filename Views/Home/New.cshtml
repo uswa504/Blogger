@@ -42,33 +42,23 @@
             </div>
         </div>
         </div>
-        <div class="col-md-9 main">
-            <div class="banner-section">
-                <div class="top-news">
+        <div class="col-md-9 main" style="padding:10px">
                     <div class="top-inner">
                         <div class="sign-up">
                             <h3 class="tittle reg">New Article</h3>
-                            <form action="/Home/Submit_Register" method="post">
-                                <div class="sign-u">
-                                    <div class="sign-up1">
-                                        <h4 class="a">Title* :</h4>
-                                    </div>
-                                    <div class="sign-up2">
-                                        <input name="title" type="text">
-                                    </div>
-                                    <div class="sign-up2">
-                                        <textarea name="body" type="text" style="width:514.66px; height:1000px"></textarea>
-                                    </div>
-                                    <div class="clearfix"> </div>
-                                </div>
-
-                                <input type="submit" value="Publish">
+                            <form action="save" method="POST">
+                                <h5>Title</h5>
+                                <input type="text" value="" name="Title">
+                                <textarea name="editor_content" id="myEditor"></textarea>
+                                <input type="submit" value="Submit" />
                             </form>
+
+                            <script>
+                                new FroalaEditor('#myEditor', { toolbarInline: false })
+                            </script>
                         </div>
                         <div class="clearfix"> </div>
                     </div>
-                    </div>
-                </div>
             </div>
             <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
         </div>
