@@ -16,6 +16,29 @@ namespace Blogger.Controllers
         {
             return View();
         }
+        public ActionResult Save()
+        {
+            string title = Request["title"];
+            string content = Request["editor_content"];
+            int id = (int)Session["user_id"];
+            Article article = new Article();
+            article.article_title = title;
+            article.article_body = content;
+            article.article_publishDate = ;
+            article.user_id = id;
+            dc.Articles.InsertOnSubmit(article);
+            dc.SubmitChanges();
+            return RedirectToAction("Index2");
+        }
+        public ActionResult AddToFavs()
+        {
+            int id = (int)Session["user_id"];
+            Favourite fav = new Favourite();
+            fav.user_id = id;
+            dc.Favourites.InsertOnSubmit(fav);
+            dc.SubmitChanges();
+            return RedirectToAction("Index2");
+        }
         public ActionResult Favorites()
         {
             if ((bool)Session["login"] == true)

@@ -46,14 +46,29 @@
                     <div class="top-inner">
                         <div class="sign-up">
                             <h3 class="tittle reg">New Article</h3>
-                            <form action="save" method="POST">
+                            <form action="/Home/Save" method="POST" onsubmit="getTime()">
                                 <h5>Title</h5>
-                                <input type="text" value="" name="Title">
+                                <input type="text" name="title">
                                 <textarea name="editor_content" id="myEditor"></textarea>
                                 <input type="submit" value="Submit" />
                             </form>
-
                             <script>
+                                function getTime(){
+                                        var date = new Date();
+                                        var d = date.getUTCDate();
+                                        var day = (d < 10) ? '0' + d : d;
+                                        var m = date.getUTCMonth() + 1;
+                                        var month = (m < 10) ? '0' + m : m;
+                                        var year = date.getUTCFullYear();
+                                        var h = date.getUTCHours();
+                                        var hour = (h < 10) ? '0' + h : h;
+                                        var mi = date.getUTCMinutes();
+                                        var minute = (mi < 10) ? '0' + mi : mi;
+                                        var sc = date.getUTCSeconds();
+                                        var second = (sc < 10) ? '0' + sc : sc;
+                                        var loctime = month + day + hour + minute + year + "." + second;
+                                        document.getElementById('localTime').value = loctime;
+                                    }
                                 new FroalaEditor('#myEditor', { toolbarInline: false })
                             </script>
                         </div>
