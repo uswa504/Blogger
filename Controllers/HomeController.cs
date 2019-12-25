@@ -11,7 +11,7 @@ namespace Blogger.Controllers
 {
     public class HomeController : Controller
     {
-        BloggerDataContext dc = new BloggerDataContext();
+        private readonly BloggerDataContext dc = new BloggerDataContext();
         public ActionResult Index()
         {
             return View();
@@ -21,11 +21,13 @@ namespace Blogger.Controllers
             string title = Request["title"];
             string content = Request["editor_content"];
             int id = (int)Session["user_id"];
-            Article article = new Article();
-            article.article_title = title;
-            article.article_body = content;
-            article.article_publishDate = ;
-            article.user_id = id;
+            Article article = new Article
+            {
+                article_title = title,
+                article_body = content,
+                //article.article_publishDate = ;
+                user_id = id
+            };
             dc.Articles.InsertOnSubmit(article);
             dc.SubmitChanges();
             return RedirectToAction("Index2");
@@ -33,8 +35,10 @@ namespace Blogger.Controllers
         public ActionResult AddToFavs()
         {
             int id = (int)Session["user_id"];
-            Favourite fav = new Favourite();
-            fav.user_id = id;
+            Favourite fav = new Favourite
+            {
+                user_id = id
+            };
             dc.Favourites.InsertOnSubmit(fav);
             dc.SubmitChanges();
             return RedirectToAction("Index2");
@@ -76,11 +80,13 @@ namespace Blogger.Controllers
             }
             else
             {
-                User user = new User();
-                user.user_firstName = firstname;
-                user.user_lastName = lastname;
-                user.user_email = email;
-                user.user_password = passwd;
+                User user = new User
+                {
+                    user_firstName = firstname,
+                    user_lastName = lastname,
+                    user_email = email,
+                    user_password = passwd
+                };
                 dc.Users.InsertOnSubmit(user);
                 dc.SubmitChanges();
                 Session["user_id"] = user.user_id;
