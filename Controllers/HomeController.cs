@@ -33,6 +33,27 @@ namespace Blogger.Controllers
             dc.SubmitChanges();
             return RedirectToAction("Index2");
         }
+        public ActionResult Delete(int id)
+        {
+            var s = dc.Articles.First(x => x.article_id == id);
+            dc.Articles.DeleteOnSubmit(s);
+            dc.SubmitChanges();
+            return RedirectToAction("MyArticles");
+        }
+        public ActionResult Update(int id)
+        {
+            return View(dc.Articles.First(s => s.article_id == id));
+        }
+
+        public ActionResult UpdateOK(Article x)
+        {
+            var a = dc.Articles.First(s => s.article_id == x.article_id);
+            //a.Name = Request["name"];
+            //a.ProTittle = Request["pt"];
+            dc.SubmitChanges();
+            return RedirectToAction("Index");
+
+        }
         public ActionResult AddToFavs()
         {
             int id = (int)Session["user_id"];
@@ -101,7 +122,10 @@ namespace Blogger.Controllers
         {
             if ((bool)Session["login"] == true)
             {
-                return View();
+                int userid = (int) Session["user_id"];
+                var s = dc.Articles.All(x => x.user_id == userid);
+                //var articles = s.ToList();
+                return View(s);
             }
             else return RedirectToAction("Login");
         }

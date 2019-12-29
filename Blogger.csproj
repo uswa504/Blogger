@@ -215,6 +215,7 @@
     <None Include="Views\Home\Login.cshtml" />
     <None Include="Views\Home\MyArticles.cshtml" />
     <None Include="Views\Home\New.cshtml" />
+    <Content Include="Views\Home\New_Edit.cshtml" />
     <None Include="Views\Home\Registration.cshtml" />
     <None Include="Views\Home\Single.cshtml" />
     <Content Include="Web.config" />

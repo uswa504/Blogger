@@ -1,0 +1,10 @@
+﻿
+@model Blogger.Models.Article
+
+<h2>Edit</h2>
+<form action="/Home/EditOK/@Model.article_id" method="post">
+    Name:<input type="text" name="name" value="@Model.Name" /><br />
+    Project Tittle:<input type="text" name="pt" value="@Model.ProTittle" /><br />
+    <input type="submit" value="Edit" />
+</form>
+

@@ -42,27 +42,21 @@
         </div>
     </div>
 </div>
-<div class="col-md-9 main" style="padding-left:10px">
-    <!--banner-section-->
+<div class="col-md-9 main" style="padding-left:20px">
     <h1 class="tittle reg">FEED</h1>
-    </br>
-    <div class="col-md-4 top-text">
-        <h5 class="top"><a href="/Home/Single">Consetetur sadipscing elit</a></h5>
-        <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt labore dolore magna aliquyam eratsed diam justo duo dolores rebum.</p>
-        <p>On Jun 25  <a class="span_link" href="/Home/Update"><span class="glyphicon glyphicon-refresh"></span></a> <a class="span_link" href="/Home/Delete"><span class="glyphicon glyphicon-trash"></span></a><a class="span_link" href="/Home/Single"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></p>
+    <br />
+    <div class="row" style="padding-left:7px">
+        @foreach (var s in Model)
+        {
+            <div class="col-md-4 top-text">
+                <h5 class="top"><a href="/Home/Single">@s.article_title</a></h5>
+                <p>@s.article_body.Substring(0, 300)</p>
+                <p>On @s.article_publishDate <a class="span_link" href="/Home/Update"><span class="glyphicon glyphicon-refresh"></span></a> <a class="span_link" href="/Home/Delete/@s.article_id"><span class="glyphicon glyphicon-trash"></span></a><a class="span_link" href="/Home/Single"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></p>
+            </div>
+        }
     </div>
-    <div class="col-md-4 top-text">
-        <h5 class="top"><a href="/Home/Single">Consetetur sadipscing elit</a></h5>
-        <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt labore dolore magna aliquyam eratsed diam justo duo dolores rebum.</p>
-        <p>On Jun 25 <a class="span_link" href="/Home/Update"><span class="glyphicon glyphicon-refresh"></span></a> <a class="span_link" href="/Home/Delete"><span class="glyphicon glyphicon-trash"></span></a><a class="span_link" href="/Home/Single"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></p>
-    </div>
-    <div class="col-md-4 top-text two">
-        <h5 class="top"><a href="/Home/Single">Consetetur sadipscing elit</a></h5>
-        <p>Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt labore dolore magna aliquyam eratsed diam justo duo dolores rebum.</p>
-        <p>On Jun 25 <a class="span_link" href="/Home/Update"><span class="glyphicon glyphicon-refresh"></span></a> <a class="span_link" href="/Home/Delete"><span class="glyphicon glyphicon-trash"></span></a><a class="span_link" href="/Home/Single"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></p>
-    </div>
-    <div class="clearfix"> </div>
-</div>		<div class="clearfix"> </div>
+</div>	
+<div class="clearfix"> </div>
 <!--start-smooth-scrolling-->
 
 <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
