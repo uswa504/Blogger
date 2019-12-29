@@ -14,7 +14,8 @@ namespace Blogger.Controllers
         private readonly BloggerDataContext dc = new BloggerDataContext();
         public ActionResult Index()
         {
-            return View();
+            var articles = dc.Articles.ToList();
+            return View(articles);
         }
         public ActionResult Save()
         {
@@ -25,7 +26,7 @@ namespace Blogger.Controllers
             {
                 article_title = title,
                 article_body = content,
-                //article.article_publishDate = ;
+                article_publishDate = DateTime.Now.ToString("dd-MMM-yyyy"),
                 user_id = id
             };
             dc.Articles.InsertOnSubmit(article);
@@ -47,7 +48,8 @@ namespace Blogger.Controllers
         {
             if ((bool)Session["login"] == true)
             {
-                return View();
+                var fav = dc.Favourites.ToList();
+                return View(fav);
             }
             return RedirectToAction("Login");
         }
@@ -132,7 +134,8 @@ namespace Blogger.Controllers
         {
             if ((bool)Session["login"] == true)
             {
-                return View();
+                var articles = dc.Articles.ToList();
+                return View(articles);
             }
             else return RedirectToAction("Login");
         }
