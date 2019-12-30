@@ -42,24 +42,27 @@ namespace Blogger.Controllers
         }
         public ActionResult Update(int id)
         {
-            return View(dc.Articles.First(s => s.article_id == id));
+            if ((bool)Session["login"] == true)
+            {
+                return View(dc.Articles.First(s => s.article_id == id));
+            }
+            return RedirectToAction("Login");
         }
-
         public ActionResult UpdateOK(Article x)
         {
             var a = dc.Articles.First(s => s.article_id == x.article_id);
-            //a.Name = Request["name"];
-            //a.ProTittle = Request["pt"];
+            a.article_title = Request["title"];
+            a.article_body = Request["editor_content"];
             dc.SubmitChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index2");
 
         }
-        public ActionResult AddToFavs()
+        public ActionResult AddToFavs(int id)
         {
-            int id = (int)Session["user_id"];
+            int userid = (int)Session["user_id"];
             Favourite fav = new Favourite
             {
-                user_id = id
+                user_id = userid
             };
             dc.Favourites.InsertOnSubmit(fav);
             dc.SubmitChanges();
@@ -123,9 +126,8 @@ namespace Blogger.Controllers
             if ((bool)Session["login"] == true)
             {
                 int userid = (int) Session["user_id"];
-                var s = dc.Articles.All(x => x.user_id == userid);
-                //var articles = s.ToList();
-                return View(s);
+                var a = dc.Articles.Where(s => s.user_id == userid).ToList();
+                return View(a);
             }
             else return RedirectToAction("Login");
         }
@@ -146,11 +148,11 @@ namespace Blogger.Controllers
             }
             else return RedirectToAction("Login");
         }
-        public ActionResult Single()
+        public ActionResult Single(int id)
         {
             if ((bool)Session["login"] == true)
             {
-                return View();
+                 return View(dc.Articles.First(s => s.article_id == id));
             }
             else return RedirectToAction("Login");
         }

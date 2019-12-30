@@ -1,3 +1,5 @@
+
+@model Blogger.Models.Article
 <div>
     <div class="h-top" id="home">
         <div class="top-header">
@@ -40,19 +42,19 @@
             </div>
         </div>
     </div>
-    
+
     <div class="col-md-9 main">
         <h1 class="tittle reg" style="padding:20px">New Article</h1>
         <div class="top-inner">
-            <div class="sign-up"  style="padding-left:250px">
-                <form action="/Home/Save" method="POST">
+            <div class="sign-up" style="padding-left:250px">
+                <form action="/Home/UpdateOK/@Model.article_id" method="POST">
                     <label>Title:</label>
                     <br />
-                    <input type="text" name="title" style="width:600px;height:50px" />
+                    <input type="text" name="title" value="@Model.article_title" style="width:600px;height:50px" />
                     <br />
                     <label>Content:</label>
                     <br />
-                    <textarea name="editor_content" style="width:600px; height:600px"></textarea>
+                    <textarea name="editor_content" style="width:600px; height:600px">@Model.article_body</textarea>
                     <br />
                     <input type="submit" value="Submit" />
                 </form>
