@@ -68,14 +68,22 @@ namespace Blogger.Controllers
             if ((bool)Session["login"] == true)
             {
                 int userid = (int)Session["user_id"];
-                Favourite fav = new Favourite
+                var obj = dc.Favourites.Where(a => a.article_id.Equals(id) && a.user_id.Equals(userid)).FirstOrDefault();
+                if (obj != null)
                 {
-                    article_id = id,
-                    user_id = userid
-                };
-                dc.Favourites.InsertOnSubmit(fav);
-                dc.SubmitChanges();
-                Response.Write("<script>alert('Added to Favorites')</script>");
+                    Response.Write("<script>alert('Already Added!')</script>");
+                }
+                else if (obj == null)
+                {
+                    Favourite fav = new Favourite
+                    {
+                        article_id = id,
+                        user_id = userid
+                    };
+                    dc.Favourites.InsertOnSubmit(fav);
+                    dc.SubmitChanges();
+                    Response.Write("<script>alert('Added to Favorites')</script>");
+                }
                 return RedirectToAction("Index2");
             }
             else return RedirectToAction("Login");
@@ -98,8 +106,6 @@ namespace Blogger.Controllers
             {
                 int userid = (int)Session["user_id"];
                 var a = dc.Articles.Where(q => q.Favourites.Any(s => s.user_id == userid));
-                //var fav = dc.Favourites.Where(s => s.user_id == userid);
-                //var a = dc.Articles.Where(s => s.article_id == ).ToList();
                 return View(a);
             }
             return RedirectToAction("Login");
@@ -117,7 +123,7 @@ namespace Blogger.Controllers
 
                 return RedirectToAction("Index2");
             }
-            else return RedirectToAction("Login");
+            return RedirectToAction("Login");
         }
         public ActionResult Submit_Register()
         {
@@ -156,7 +162,7 @@ namespace Blogger.Controllers
                 var a = dc.Articles.Where(s => s.user_id == userid).ToList();
                 return View(a);
             }
-            else return RedirectToAction("Login");
+            return RedirectToAction("Login");
         }
         public ActionResult Login()
         {
@@ -173,7 +179,7 @@ namespace Blogger.Controllers
             {
                 return View();
             }
-            else return RedirectToAction("Login");
+            return RedirectToAction("Login");
         }
         public ActionResult Single(int id)
         {
@@ -181,7 +187,7 @@ namespace Blogger.Controllers
             {
                  return View(dc.Articles.First(s => s.article_id == id));
             }
-            else return RedirectToAction("Login");
+            return RedirectToAction("Login");
         }
         public ActionResult Index2()
         {

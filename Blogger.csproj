@@ -178,13 +178,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="fonts\Montserrat-Bold.ttf" />
+    <Content Include="fonts\Montserrat-Regular.ttf" />
     <Content Include="Models\Blogger.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>Blogger.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="fonts\Montserrat-Bold.ttf" />
-    <Content Include="fonts\Montserrat-Regular.ttf" />
     <None Include="Models\Blogger.dbml.layout">
       <DependentUpon>Blogger.dbml</DependentUpon>
     </None>
