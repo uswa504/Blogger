@@ -555,8 +555,14 @@ h5.top a:hover{
 span.glyphicon.glyphicon-circle-arrow-right,
 span.glyphicon.glyphicon-trash,
 span.glyphicon.glyphicon-refresh,
-span.glyphicon.glyphicon-heart-empty {
+span.glyphicon.glyphicon-heart-empty{
     color: #F26649;
+    margin-left: 1em;
+    margin-top: -2px;
+    vertical-align: middle;
+}
+span.glyphicon.glyphicon-heart {
+    color: #FF5050;
     margin-left: 1em;
     margin-top: -2px;
     vertical-align: middle;

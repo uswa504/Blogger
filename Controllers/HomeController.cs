@@ -40,6 +40,12 @@ namespace Blogger.Controllers
             dc.SubmitChanges();
             return RedirectToAction("MyArticles");
         }
+        public ActionResult Search()
+        {
+            string query = Request["query"];
+            var s = dc.Articles.Where(x => x.article_title == query).ToList();
+            return View(s);
+        }
         public ActionResult Update(int id)
         {
             if ((bool)Session["login"] == true)
@@ -59,21 +65,42 @@ namespace Blogger.Controllers
         }
         public ActionResult AddToFavs(int id)
         {
-            int userid = (int)Session["user_id"];
-            Favourite fav = new Favourite
+            if ((bool)Session["login"] == true)
             {
-                user_id = userid
-            };
-            dc.Favourites.InsertOnSubmit(fav);
-            dc.SubmitChanges();
-            return RedirectToAction("Index2");
+                int userid = (int)Session["user_id"];
+                Favourite fav = new Favourite
+                {
+                    article_id = id,
+                    user_id = userid
+                };
+                dc.Favourites.InsertOnSubmit(fav);
+                dc.SubmitChanges();
+                Response.Write("<script>alert('Added to Favorites')</script>");
+                return RedirectToAction("Index2");
+            }
+            else return RedirectToAction("Login");
+        }
+        public ActionResult RemoveFav(int id)
+        {
+            if ((bool)Session["login"] == true)
+            {
+                var s = dc.Favourites.First(x => x.article_id == id);
+                dc.Favourites.DeleteOnSubmit(s);
+                dc.SubmitChanges();
+                Response.Write("<script>alert('Removed from Favorites!')</script>");
+                return RedirectToAction("Favorites");
+            }
+            else return RedirectToAction("Login");
         }
         public ActionResult Favorites()
         {
             if ((bool)Session["login"] == true)
             {
-                var fav = dc.Favourites.ToList();
-                return View(fav);
+                int userid = (int)Session["user_id"];
+                var a = dc.Articles.Where(q => q.Favourites.Any(s => s.user_id == userid));
+                //var fav = dc.Favourites.Where(s => s.user_id == userid);
+                //var a = dc.Articles.Where(s => s.article_id == ).ToList();
+                return View(a);
             }
             return RedirectToAction("Login");
         }

@@ -214,6 +214,8 @@
     <None Include="Views\Home\Index2.cshtml" />
     <None Include="Views\Home\Login.cshtml" />
     <None Include="Views\Home\MyArticles.cshtml" />
+    <Content Include="Views\Home\New.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
     <None Include="Views\Home\Update.cshtml" />
     <None Include="Views\Home\Registration.cshtml" />
     <None Include="Views\Home\Single.cshtml" />

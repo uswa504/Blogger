@@ -1,6 +1,4 @@
-
-@model Blogger.Models.Article
-<div>
+﻿<div>
     <div class="h-top" id="home">
         <div class="top-header">
             <ul class="cl-effect-16 top-nag">
@@ -8,8 +6,8 @@
             </ul>
             <div class="search-box">
                 <div class="b-search">
-                    <form action="/Home/Search">
-                        <input type="text" name ="query" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                    <form action= "/Home/Search">
+                        <input type="text" name = "query" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
                         <input type="submit" value="">
                     </form>
                 </div>
@@ -47,14 +45,14 @@
         <h1 class="tittle reg" style="padding:20px">New Article</h1>
         <div class="top-inner">
             <div class="sign-up" style="padding-left:250px">
-                <form action="/Home/UpdateOK/@Model.article_id" method="POST">
+                <form action="/Home/Save" method="POST">
                     <label>Title:</label>
                     <br />
-                    <input type="text" name="title" value="@Model.article_title" style="width:600px;height:50px" />
+                    <input type="text" name="title" style="width:600px;height:50px" />
                     <br />
                     <label>Content:</label>
                     <br />
-                    <textarea name="editor_content" style="width:600px; height:600px">@Model.article_body</textarea>
+                    <textarea name="editor_content" style="width:600px; height:600px"></textarea>
                     <br />
                     <input type="submit" value="Submit" />
                 </form>
