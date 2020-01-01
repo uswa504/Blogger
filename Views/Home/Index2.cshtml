@@ -6,7 +6,7 @@
             </ul>
             <div class="search-box">
                 <div class="b-search">
-                    <form action= "/Home/Search">
+                    <form action="/Home/Search">
                         <input type="text" name="query" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
                         <input type="submit" value="">
                     </form>
@@ -49,13 +49,14 @@
                 {
                     <div class="col-md-4 top-text">
                         <h5 class="top"><a href="/Home/Single/@s.article_id">@s.article_title</a></h5>
-                        <p>@s.article_body.Substring(0,300)</p>
+                        <p>@s.article_body.Substring(0, 300)</p>
                         <p>On @s.article_publishDate<a class="span_link" href="/Home/AddToFavs/@s.article_id"><span class="glyphicon glyphicon-heart-empty"></span></a><a class="span_link" href="/Home/Single/@s.article_id"><span class="glyphicon glyphicon-circle-arrow-right"></span></a></p>
                     </div>
                 }
             </div>
-            </div>
+        </div>
         <div class="clearfix"> </div>
         <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
     </div>
+    
 </div>

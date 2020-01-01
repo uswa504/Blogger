@@ -1,70 +1,79 @@
 ﻿<div>
-      <div class="h-top" id="home">
-		   <div class="top-header">
-				  <ul class="cl-effect-16 top-nag">
-						<li><a href="/Home/Registration" data-hover="Registration">Registration</a></li> 
-						<li><a href="/Home/Login" data-hover="Login">Login</a></li>
-					</ul>
-					<div class="search-box">
-					    <div class="b-search">
-								<form action="/Home/Search">
-										<input type="text" name="query" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-										<input type="submit" value="">
-								</form>
-							</div>
-						</div>
-
-					<div class="clearfix"></div>
-				</div>
-       </div>
-	<div class="full">
-			<div class="col-md-3 top-nav login">
-				     <div class="logo">
-						<a href=""><h1>Blogger</h1></a>
-					</div>
-					<div class="top-menu">
-					 <span class="menu"> </span>
-
-                     <ul class="cl-effect-16">
-                         <li><a href="/Home/New" data-hover="Write Article">Write Article</a></li>
-                         <li><a href="/Home/Index2" data-hover="Home">Home</a></li>
-                         <li><a href="/Home/Favorites" data-hover="Favorites">Favorites</a></li>
-                         <li><a href="/Home/MyArticles" data-hover="My Articles">My Articles</a></li>
-                     </ul>
-					<!-- script-for-nav -->
-					<script>
-						$( "span.menu" ).click(function() {
-						  $( ".top-menu ul" ).slideToggle(300, function() {
-							// Animation complete.
-						  });
-						});
-					</script>
-				<!-- script-for-nav -->
-			    </div>
-			</div>
-        </div>
-            <div class="col-md-9 main">
-                <!-- login-page -->
-                <div class="login">
-                    <div class="login-grids">
-                        <div class="col-md-6 log">
-                            <h3 class="tittle">Login <i class="glyphicon glyphicon-lock"></i></h3>
-                            <p>Welcome, please enter the following to continue.</p>
-                            <form action="/Home/Submit_Login" method="get">
-                                <h5>Email:</h5>
-                                <input type="text" value="" name="email">
-                                <h5>Password:</h5>
-                                <input type="password" value="" name="password">
-                                <input type="submit" value="Login"/>
-                            </form>
-                        </div>
-                        <div class="col-md-6 login-right">
-                            <h3 class="tittle">New Registration <i class="glyphicon glyphicon-file"></i></h3>
-                            <p>By creating an account, you will be able to move through the articles written by the writers and more.</p>
-                            <a href="/Home/Registration" class="hvr-bounce-to-bottom button">Create An Account</a>
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
+    <div class="h-top" id="home">
+        <div class="top-header">
+            <ul class="cl-effect-16 top-nag">
+                <li><a href="/Home/Registration" data-hover="Registration">Registration</a></li>
+                <li><a href="/Home/Login" data-hover="Login">Login</a></li>
+            </ul>
+            <div class="search-box">
+                <div class="b-search">
+                    <form action="/Home/Search">
+                        <input type="text" name="query" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+                        <input type="submit" value="">
+                    </form>
                 </div>
             </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="full">
+        <div class="col-md-3 top-nav login">
+            <div class="logo">
+                <a href=""><h1>Blogger</h1></a>
+            </div>
+            <div class="top-menu">
+                <span class="menu"> </span>
+
+                <ul class="cl-effect-16">
+                    <li><a href="/Home/New" data-hover="Write Article">Write Article</a></li>
+                    <li><a href="/Home/Index2" data-hover="Home">Home</a></li>
+                    <li><a href="/Home/Favorites" data-hover="Favorites">Favorites</a></li>
+                    <li><a href="/Home/MyArticles" data-hover="My Articles">My Articles</a></li>
+                </ul>
+                <!-- script-for-nav -->
+                <script>
+                    $("span.menu").click(function () {
+                        $(".top-menu ul").slideToggle(300, function () {
+                            // Animation complete.
+                        });
+                    });
+                </script>
+                <!-- script-for-nav -->
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 main">
+        <!-- login-page -->
+        <div class="login">
+            <div class="login-grids">
+                <div class="col-md-6 log">
+                    <h3 class="tittle">Login <i class="glyphicon glyphicon-lock"></i></h3>
+                    <p>Welcome, please enter the following to continue.</p>
+                    <form action="/Home/Submit_Login" method="get">
+                        <h5>Email:</h5>
+                        <input type="text" value="" name="email">
+                        <h5>Password:</h5>
+                        <input type="password" value="" name="password">
+                        <input type="submit" value="Login" />
+                    </form>
+                </div>
+                <div class="col-md-6 login-right">
+                    <h3 class="tittle">New Registration <i class="glyphicon glyphicon-file"></i></h3>
+                    <p>By creating an account, you will be able to move through the articles written by the writers and more.</p>
+                    <a href="/Home/Registration" class="hvr-bounce-to-bottom button">Create An Account</a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function DisableBackButtonAllBrowsers() {
+            window.history.forward()
+        };
+        DisableBackButtonAllBrowsers();
+        window.onload = DisableBackButtonAllBrowsers;
+        window.onpageshow = function (evts) { if (evts.persisted) DisableBackButtonAllBrowsers(); };
+        window.onunload = function () { void (0) };
+    </script>
 </div>
